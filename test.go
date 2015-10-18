@@ -1,8 +1,8 @@
 package main
 
 import (
+	"./wkhtmltopdf"
 	"fmt"
-	"github.com/hailocab/wkhtmltopdf-go/wkhtmltopdf"
 )
 
 func main() {
@@ -39,6 +39,9 @@ func main() {
 	}
 	c.Phase = func(c *wkhtmltopdf.Converter) {
 		fmt.Printf("Phase\n")
+	}
+	c.Finished = func(c *wkhtmltopdf.Converter, s int) {
+		fmt.Printf("Finished: %d\n", s)
 	}
 	c.Convert()
 
