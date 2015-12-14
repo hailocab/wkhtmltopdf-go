@@ -22,6 +22,7 @@ import "C"
 import (
 	"fmt"
 	"unsafe"
+	log "github.com/cihub/seelog"
 )
 
 type GlobalSettings struct {
@@ -131,6 +132,16 @@ func (self *Converter) AddHtml(settings *ObjectSettings, data string) {
 	c_data := C.CString(data)
 	defer C.free(unsafe.Pointer(c_data))
 	C.wkhtmltopdf_add_object(self.c, settings.s, c_data)
+}
+
+func (self *Converter) Output() (int64, string) {
+	cc := C.CString("")
+	ccc := (**C.uchar)(unsafe.Pointer(&cc))
+	ll := C.wkhtmltopdf_get_output(self.c, ccc)
+	//co := C.GoString((*C.char)(unsafe.Pointer(*ccc)))
+	co := C.GoStringN((*C.char)(unsafe.Pointer(*ccc)), C.int(ll))
+	log.Infof("Converted to %d char.s (%d)", ll, len(co))
+	return int64(ll),  co
 }
 
 func (self *Converter) ErrorCode() int {
