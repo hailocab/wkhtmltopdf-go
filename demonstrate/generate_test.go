@@ -5,7 +5,7 @@ import (
 
 	//	"fmt"
 	"github.com/hailocab/wkhtmltopdf-go/wkhtmltopdf"
-	//	tos "os"
+	tos "os"
 )
 
 func TestPdfFromStream(t *testing.T) {
@@ -58,4 +58,12 @@ func TestPdfFromStream(t *testing.T) {
 	if lo != 10406 || lo != len(outp) {
 		t.Errorf("Conversion to PDF incorrect: lengths out of kilter: expected: %d lout: %d len text: %d", 10406, lout, len(outp))
 	}
+
+	f, err := tos.OpenFile("direct_test.pdf", tos.O_WRONLY|tos.O_CREATE, tos.ModePerm)
+	if err != nil {
+		t.Errorf("Failed to open file: %s\n", err)
+	}
+	defer func() { f.Close() }()
+	f.Truncate(0)
+	f.Write([]byte(outp))
 }
