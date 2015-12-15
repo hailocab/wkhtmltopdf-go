@@ -59,11 +59,12 @@ func TestPdfFromStream(t *testing.T) {
 		t.Errorf("Conversion to PDF incorrect: lengths out of kilter: expected: %d lout: %d len text: %d", 10406, lout, len(outp))
 	}
 
+	t.Logf("Open file for writing... direct_test.pdf")
 	f, err := tos.OpenFile("direct_test.pdf", tos.O_WRONLY|tos.O_CREATE, tos.ModePerm)
 	if err != nil {
 		t.Errorf("Failed to open file: %s\n", err)
 	}
-	defer func() { f.Close() }()
+	defer func() { f.Close(); t.Logf("Closed PDF file") }()
 	f.Truncate(0)
 	f.Write([]byte(outp))
 }

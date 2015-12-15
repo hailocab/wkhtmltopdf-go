@@ -7,5 +7,7 @@ echo ""
 echo ""
 echo "============= RUN COMMON SCRIPT ================="
 /var/lib/jenkins/common/script/cibuild
+keepstatus=$?
+echo " --------------- $keepstatus --------------------"
 echo "============= END COMMON SCRIPT ================="
-exit 0
+exit $keepstatus
