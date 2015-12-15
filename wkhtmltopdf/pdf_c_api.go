@@ -21,8 +21,8 @@ import "C"
 
 import (
 	"fmt"
-	"unsafe"
 	log "github.com/cihub/seelog"
+	"unsafe"
 )
 
 type GlobalSettings struct {
@@ -141,7 +141,7 @@ func (self *Converter) Output() (int64, string) {
 	//co := C.GoString((*C.char)(unsafe.Pointer(*ccc)))
 	co := C.GoStringN((*C.char)(unsafe.Pointer(*ccc)), C.int(ll))
 	log.Infof("Converted to %d char.s (%d)", ll, len(co))
-	return int64(ll),  co
+	return int64(ll), co
 }
 
 func (self *Converter) ErrorCode() int {
