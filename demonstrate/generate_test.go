@@ -2,10 +2,10 @@ package demonstrate
 
 import (
 	"testing"
-
-	//	"fmt"
-	"github.com/hailocab/wkhtmltopdf-go/wkhtmltopdf"
 	tos "os"
+
+	"github.com/hailocab/wkhtmltopdf-go/wkhtmltopdf"
+	"github.com/hailocab/wkhtmltopdf-go/converter"
 )
 
 func TestPdfFromStream(t *testing.T) {
@@ -67,4 +67,14 @@ func TestPdfFromStream(t *testing.T) {
 	defer func() { f.Close(); t.Logf("Closed PDF file") }()
 	f.Truncate(0)
 	f.Write([]byte(outp))
+}
+
+func TestPdfUsingConvert(t *testing.T) {
+	pdf, err := converter.ConvertHtmlStringToPdf("<html><body><h3>HELLO</h3><p>Welcome to Hailo's World of Cruft</p></body></html>")
+	if err != nil {
+		t.Errorf("Converter returned error: %s", err)
+	}
+	if len(pdf) != 10891 {
+		t.Errorf("Length of PDF wrong: expected: %d got: %d", 1, len(pdf))		
+	}
 }
