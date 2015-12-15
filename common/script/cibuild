@@ -4,7 +4,7 @@ echo "============ RUN SPECIAL SCRIPT ================="
 go tool cgo -gccgo wkhtmltopdf/pdf_c_api.go 
 echo "============ END SPECIAL SCRIPT ================="
 echo ""
-echo "'
+echo ""
 echo "============= RUN COMMON SCRIPT ================="
 /var/lib/jenkins/common/script/cibuild
 echo "============= END COMMON SCRIPT ================="
