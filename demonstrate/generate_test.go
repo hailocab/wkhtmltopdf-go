@@ -67,9 +67,6 @@ func TestPdfFromStream(t *testing.T) {
 	defer func() { f.Close(); t.Logf("Closed PDF file") }()
 	f.Truncate(0)
 	f.Write([]byte(outp))
-	t.Log("-----")
-	t.Logf(outp)
-	t.Log("-----")
 }
 
 func TestPdfUsingConvert(t *testing.T) {
@@ -80,7 +77,4 @@ func TestPdfUsingConvert(t *testing.T) {
 	if len(pdf) != 10891 {
 		t.Errorf("Length of PDF wrong: expected: %d got: %d", 10891, len(pdf))
 	}
-	t.Log("-----")
-	t.Logf(pdf)
-	t.Log("-----")
 }

@@ -1,6 +1,9 @@
 #!/bin/bash
 
 echo "============ RUN SPECIAL SCRIPT ================="
+echo ""
+which wkhtmltopdf
+echo ""
 go tool cgo -gccgo wkhtmltopdf/pdf_c_api.go 
 echo "============ END SPECIAL SCRIPT ================="
 echo ""
@@ -8,6 +11,6 @@ echo ""
 echo "============= RUN COMMON SCRIPT ================="
 /var/lib/jenkins/common/script/cibuild
 keepstatus=$?
-echo " --------------- $keepstatus --------------------"
+echo " ----------- status = $keepstatus ---------------"
 echo "============= END COMMON SCRIPT ================="
 exit $keepstatus
