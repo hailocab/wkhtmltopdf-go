@@ -3,9 +3,9 @@ package demonstrate
 import (
 	"testing"
 
-//	"fmt"
+	//	"fmt"
 	"github.com/hailocab/wkhtmltopdf-go/wkhtmltopdf"
-//	tos "os"
+	//	tos "os"
 )
 
 func TestPdfFromStream(t *testing.T) {
@@ -46,7 +46,7 @@ func TestPdfFromStream(t *testing.T) {
 	c.Convert()
 
 	t.Logf("Got error code: %d\n", c.ErrorCode())
-	
+
 	if c.ErrorCode() != 0 {
 		t.Errorf("Conversion to PDF failed: incomprehensible error-code: %v", c.ErrorCode())
 	}
