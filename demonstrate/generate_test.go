@@ -1,11 +1,11 @@
 package demonstrate
 
 import (
-	"testing"
 	tos "os"
+	"testing"
 
-	"github.com/hailocab/wkhtmltopdf-go/wkhtmltopdf"
 	"github.com/hailocab/wkhtmltopdf-go/converter"
+	"github.com/hailocab/wkhtmltopdf-go/wkhtmltopdf"
 )
 
 func TestPdfFromStream(t *testing.T) {
@@ -75,6 +75,6 @@ func TestPdfUsingConvert(t *testing.T) {
 		t.Errorf("Converter returned error: %s", err)
 	}
 	if len(pdf) != 10891 {
-		t.Errorf("Length of PDF wrong: expected: %d got: %d", 1, len(pdf))		
+		t.Errorf("Length of PDF wrong: expected: %d got: %d", 1, len(pdf))
 	}
 }
