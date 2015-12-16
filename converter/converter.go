@@ -48,6 +48,9 @@ func ConvertHtmlStringToPdf(html string) (string, error) {
 	c.Convert()
 
 	if len(errors) > 0 {
+		for i, msg := range errors {
+			log.Errorf("Error converting to PDF [%d]: %s", i, msg)
+		}
 		return "", fmt.Errorf("Error converting to PDF: %s", errors[0])
 	}
 	if c.ErrorCode() != 0 {
