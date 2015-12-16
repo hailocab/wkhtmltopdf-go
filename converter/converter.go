@@ -33,17 +33,17 @@ func ConvertHtmlStringToPdf(html string) (string, error) {
 
 	errors := []string{}
 	c.ProgressChanged = func(c *wkhtmltopdf.Converter, b int) {
-		log.Debugf("Progress: %d", b)
+		//		log.Debugf("Progress: %d", b)
 	}
 	c.Error = func(c *wkhtmltopdf.Converter, msg string) {
-		log.Errorf("Error converting to PDF: %s", msg)
+		//		log.Errorf("Error converting to PDF: %s", msg)
 		errors = append(errors, msg)
 	}
 	c.Warning = func(c *wkhtmltopdf.Converter, msg string) {
-		log.Errorf("Problem converting to PDF: %s", msg)
+		//		log.Errorf("Problem converting to PDF: %s", msg)
 	}
 	c.Phase = func(c *wkhtmltopdf.Converter) {
-		log.Debugf("Phase\n")
+		//		log.Debugf("Phase\n")
 	}
 	c.Convert()
 
