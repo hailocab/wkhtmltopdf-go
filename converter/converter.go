@@ -45,7 +45,10 @@ func ConvertHtmlStringToPdf(html string) (string, error) {
 	c.Phase = func(c *wkhtmltopdf.Converter) {
 		//		log.Debugf("Phase\n")
 	}
+
+	log.Debugf("[ConvertHtmlStringToPdf] Start conversion...")
 	c.Convert()
+	log.Debugf("[ConvertHtmlStringToPdf] Completed conversion...")
 
 	if len(errors) > 0 {
 		for i, msg := range errors {
@@ -57,6 +60,9 @@ func ConvertHtmlStringToPdf(html string) (string, error) {
 		return "", fmt.Errorf("Error-code converting to PDF: %d", c.ErrorCode())
 	}
 
-	_, outp := c.Output()
+	log.Debugf("[ConvertHtmlStringToPdf] Get output...")
+	lp, outp := c.Output()
+	log.Debugf("[ConvertHtmlStringToPdf] Got output: len: %d/%d", lp, len(outp))
+
 	return outp, nil
 }
