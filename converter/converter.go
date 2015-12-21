@@ -47,7 +47,8 @@ func ConvertHtmlStringToPdf(html string) (string, error) {
 	}
 	c.Phase = func(c *wkhtmltopdf.Converter) {
 		//		log.Debugf("Phase\n")
-		fmt.Printf("Phase\n")
+		cpi, cps := c.CurrentPhase()
+		fmt.Printf("Phase: [%d] %s\n", cpi, cps)
 	}
 
 	log.Debugf("[ConvertHtmlStringToPdf] Start conversion...")

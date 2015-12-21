@@ -138,7 +138,6 @@ func (self *Converter) Output() (int64, string) {
 	cc := C.CString("")
 	ccc := (**C.uchar)(unsafe.Pointer(&cc))
 	ll := C.wkhtmltopdf_get_output(self.c, ccc)
-	//co := C.GoString((*C.char)(unsafe.Pointer(*ccc)))
 	co := C.GoStringN((*C.char)(unsafe.Pointer(*ccc)), C.int(ll))
 	log.Infof("Converted to %d char.s (%d)", ll, len(co))
 	return int64(ll), co
@@ -146,6 +145,13 @@ func (self *Converter) Output() (int64, string) {
 
 func (self *Converter) ErrorCode() int {
 	return int(C.wkhtmltopdf_http_error_code(self.c))
+}
+
+func (self *Converter) CurrentPhase() (int, string) {
+	cpic := C.wkhtmltopdf_current_phase(self.c)
+	cpi := int(cpic)
+	cps := C.GoString(C.wkhtmltopdf_phase_description(self.c, cpic))
+	return cpi, cps
 }
 
 func (self *Converter) Destroy() {
