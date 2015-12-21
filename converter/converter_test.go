@@ -1524,8 +1524,8 @@ func TestBigTest(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error converting HTML to PDF: %s", err)
 	}
-	if len(pdf) != 36029 {
-		t.Errorf("Wrong size for PDF output: expected: %d got: %d", 1, len(pdf))
+	if len(pdf) != 38454 {
+		t.Errorf("Wrong size for PDF output: expected: %d got: %d", 38454, len(pdf))
 	}
 
 	fName := fmt.Sprintf("%d.pdf", time.Now().Unix())
