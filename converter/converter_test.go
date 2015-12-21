@@ -1,11 +1,11 @@
 package converter
 
 import (
-    "testing"
+	"testing"
 
-    "fmt"
-    "time"
-    "os"
+	"fmt"
+	"os"
+	"time"
 )
 
 var htmlPage = `<!DOCTYPE html>
@@ -1536,5 +1536,5 @@ func TestBigTest(t *testing.T) {
 	}
 	defer func() { f.Close(); t.Logf("Closed PDF file: %s", fName) }()
 	f.Truncate(0)
-	f.Write([]byte(pdf))	
+	f.Write([]byte(pdf))
 }
