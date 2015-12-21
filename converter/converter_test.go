@@ -1529,7 +1529,8 @@ func TestBigTest(t *testing.T) {
 	}
 
 	fName := fmt.Sprintf("%d.pdf", time.Now().Unix())
-	t.Logf("Open file for writing... %s", fName)
+	wd, _ := os.Getwd()
+	t.Logf("Open file for writing (wd: %s)... %s", wd, fName)
 	f, err := os.OpenFile(fName, os.O_WRONLY|os.O_CREATE, os.ModePerm)
 	if err != nil {
 		t.Errorf("Failed to open file: %s\n", err)
