@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"os"
 	"time"
+	
+	"runtime"
 )
 
 var htmlPage = `<!DOCTYPE html>
@@ -1520,6 +1522,7 @@ C/ Santa Engracia 108, 1&ordm;D <br/>
 `
 
 func TestBigTest(t *testing.T) {
+	t.Logf("Num. proc.s: %d", runtime.GOMAXPROCS(-1))
 	pdf, err := ConvertHtmlStringToPdf(htmlPage)
 	if err != nil {
 		t.Errorf("Error converting HTML to PDF: %s", err)
@@ -1538,4 +1541,14 @@ func TestBigTest(t *testing.T) {
 	defer func() { f.Close(); t.Logf("Closed PDF file: %s", fName) }()
 	f.Truncate(0)
 	f.Write([]byte(pdf))
+}
+
+// Is the problem something to do with running in a goroutine
+func TestBigTestAsync(t *testing.T) {
+	c := make(chan bool,1)
+	go func() {
+		TestBigTest(t)
+	c <- true
+	}()
+	<- c
 }

@@ -21,7 +21,7 @@ func ConvertHtmlStringToPdf(html string) (string, error) {
 	os := wkhtmltopdf.NewObjectSettings()
 	os.Set("load.debugJavascript", "false")
 	os.Set("load.loadErrorHandling", "ignore")
-	//os.Set("load.jsdelay", "1000") // wait max 1s
+	os.Set("load.jsdelay", "1000") // wait max 1s
 	os.Set("web.enableJavascript", "false")
 	os.Set("web.enablePlugins", "false")
 	os.Set("web.loadImages", "true")
