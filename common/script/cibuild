@@ -8,6 +8,10 @@ go tool cgo -gccgo wkhtmltopdf/pdf_c_api.go
 echo ""
 ls -l _obj
 echo ""
+echo "============ RUN GO FMT ================="
+echo ""
+for d in `find . -name \*.go -exec dirname {} \; | grep -v vendor/ | grep -v .gosrc/|sort -u`;do go fmt ${d}/*.go; done
+echo ""
 echo "============ END SPECIAL SCRIPT ================="
 echo ""
 echo ""
