@@ -11,9 +11,12 @@ harness: $(OBJ_TST)
 clean:
 	rm -f *.o *.exe
 
+test:
+	./c_harness
+
 fresh: clean harness
 
-all: fresh
+all: fresh test
 
 snurd:
 	@echo "Fribble wibbly wib..."
