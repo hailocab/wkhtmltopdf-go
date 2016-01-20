@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 	"time"
-	
+
 	"runtime"
 )
 
@@ -1545,10 +1545,10 @@ func TestBigTest(t *testing.T) {
 
 // Is the problem something to do with running in a goroutine
 func TestBigTestAsync(t *testing.T) {
-	c := make(chan bool,1)
+	c := make(chan bool, 1)
 	go func() {
 		TestBigTest(t)
-	c <- true
+		c <- true
 	}()
-	<- c
+	<-c
 }
